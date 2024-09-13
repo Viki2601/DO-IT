@@ -11,7 +11,7 @@ import Goals from './Goals';
 
 export default function Home() {
     const navigate = useNavigate();
-    const url = "http://localhost:8000";
+    const url = "https://do-it-zk0s.onrender.com";
     const cookie = Cookies.get("email");
     const [user, setUser] = useState([]);
 
