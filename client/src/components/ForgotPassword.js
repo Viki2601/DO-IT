@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 
 
 export default function ForgotPassword() {
-    const url = "http://localhost:8000";
+    const url = "https://do-it-zk0s.onrender.com";
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [otp, setOtp] = useState(null);
