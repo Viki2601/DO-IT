@@ -8,7 +8,6 @@ import Cookies from "js-cookie";
 import axios from 'axios';
 import Goals from './Goals';
 
-
 export default function Home() {
     const navigate = useNavigate();
     const url = "https://do-it-zk0s.onrender.com";
