@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import axios from 'axios';
 
 export default function Goals() {
-    const url = "http://localhost:8000";
+    const url = "https://do-it-zk0s.onrender.com";
     const email = Cookies.get("email");
     const [newGoal, setNewGoal] = useState('');
     const [goals, setGoals] = useState([]);
