@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import moment from 'moment';
 
 export default function Task() {
-    const url = "http://localhost:8000";
+    const url = "https://do-it-zk0s.onrender.com";
     const cookie = Cookies.get("email");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [tasks, setTasks] = useState([]);
