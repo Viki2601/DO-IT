@@ -11,7 +11,7 @@ import Goals from './Goals';
 
 export default function Home() {
     const navigate = useNavigate();
-    const url = "http://localhost:8000";
+    const url = "https://do-it-zk0s.onrender.com";
     const cookie = Cookies.get("email");
     const [user, setUser] = useState([]);
 
@@ -67,7 +67,7 @@ export default function Home() {
                             <Goals />
                         </div>
                     </div>
-                    <div className='w-1/2 flex flex-col justify-center gap-5 p-5'>
+                    <div className='lg:w-1/2 flex flex-col justify-center gap-5 p-5'>
                         <Task />
                         <Notes />
                     </div>

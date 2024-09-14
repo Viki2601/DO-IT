@@ -5,7 +5,7 @@ import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function Calendar() {
-    const url = "http://localhost:8000";
+    const url = "https://do-it-zk0s.onrender.com";
     const email = Cookies.get("email");
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedTime, setSelectedTime] = useState(null);
