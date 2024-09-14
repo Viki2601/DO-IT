@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import axios from 'axios';
 import Goals from './Goals';
 
+
 export default function Home() {
     const navigate = useNavigate();
     const url = "https://do-it-zk0s.onrender.com";
@@ -59,14 +60,14 @@ export default function Home() {
                                 <h1 className='text-2xl font-semibold'>DOIT</h1>
                             </div>
                             <div className='p-3'>
-                                <p className='text-lg text-pink-500 font-semibold '>{user.name}</p>
+                                <p className='text-lg text-pink-500 font-semibold '>{user ? user.name : 'U'}</p>
                             </div>
                         </div>
                         <div className='w-full h-screen flex items-center justify-between shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-xl'>
                             <Goals />
                         </div>
                     </div>
-                    <div className='flex flex-col justify-center gap-5 p-5'>
+                    <div className='lg:w-1/2 flex flex-col justify-center gap-5 p-5'>
                         <Task />
                         <Notes />
                     </div>
