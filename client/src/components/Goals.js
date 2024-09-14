@@ -3,10 +3,12 @@ import { FiEdit } from 'react-icons/fi';
 import { GiCheckMark } from 'react-icons/gi';
 import Cookies from "js-cookie";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Goals() {
     const url = "http://localhost:8000";
     const email = Cookies.get("email");
+    const navigate = useNavigate();
     const [newGoal, setNewGoal] = useState('');
     const [goals, setGoals] = useState([]);
     const [editingIndex, setEditingIndex] = useState(null);
@@ -37,18 +39,26 @@ export default function Goals() {
     }, [email]);
 
     const handleSubmit = async () => {
-        try {
-            await axios.post(`${url}/addGoals`, {
-                email,
-                description: newGoal,
-                month: month
-            }).then(res => {
-                setGoals([...goals, ...res.data]);
-                fetchGoals();
-                setNewGoal(' ');
-            });
-        } catch (error) {
-            console.log(error);
+        if (!email) {
+            navigate("/login");
+        } else {
+            try {
+                await axios.post(`${url}/addGoals`, {
+                    email,
+                    description: newGoal,
+                    month: month
+                }).then(res => {
+                    if (Array.isArray(res.data)) {
+                        setGoals([...goals, ...res.data]);
+                    } else {
+                        setGoals([...goals, res.data]);
+                    }
+                    fetchGoals();
+                    setNewGoal("");
+                });
+            } catch (error) {
+                console.log(error);
+            }
         }
     };
 
@@ -115,7 +125,7 @@ export default function Goals() {
                         )}
                     </div>
                 )) : (
-                    <p>No goals for {month} yet!</p>
+                    <p className='text-center p-5'>No goals for {month} yet!</p>
                 )}
             </div>
         </div>

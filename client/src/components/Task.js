@@ -5,9 +5,11 @@ import { FaPlus } from "react-icons/fa";
 import { GiCheckMark, GiCrossMark } from "react-icons/gi";
 import { toast } from 'react-toastify';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 
 export default function Task() {
     const url = "http://localhost:8000";
+    const navigate = useNavigate();
     const cookie = Cookies.get("email");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [tasks, setTasks] = useState([]);
@@ -65,16 +67,21 @@ export default function Task() {
             label: newTask.label,
             due: newTask.due
         };
-        await axios.post(`${url}/addNewTask`, { task })
-            .then(res => {
-                setTasks([...tasks, res.data.tasks]);
-                fetchTasks();
-                setIsModalOpen(false);
-                setNewTask({ name: '', due: '', label: '' });
-            }).catch(e => {
-                console.log(e);
-                toast.error("Something went wrong!");
-            });
+        if (!cookie) {
+            navigate("/login");
+            toast.info("You have to Login...")
+        } else {
+            await axios.post(`${url}/addNewTask`, { task })
+                .then(res => {
+                    setTasks([...tasks, res.data.tasks]);
+                    fetchTasks();
+                    setIsModalOpen(false);
+                    setNewTask({ name: '', due: '', label: '' });
+                }).catch(e => {
+                    console.log(e);
+                    toast.error("Something went wrong!");
+                });
+        }
     };
 
     const handleStatusChange = async (taskId, currentStatus) => {
@@ -92,7 +99,7 @@ export default function Task() {
 
     return (
         <div className="flex flex-col justify-center items-center h-80 bg-opacity-50 backdrop-filter backdrop-blur-lg shadow-lg rounded-3xl p-6 max-w-md w-full">
-            <div>
+            <div className='w-full'>
                 <div className="flex justify-between items-center">
                     <h2 className="text-xl font-bold">Tasks</h2>
                 </div>
@@ -110,7 +117,7 @@ export default function Task() {
                                     {task.name}
                                 </span>
                             </div>
-                            <div className="flex items-center space-x-2">
+                            <div className="w-full flex items-center justify-end space-x-2">
                                 {task.label && (
                                     <span className="text-xs bg-yellow-100 text-yellow-700 font-semibold px-2 py-1 rounded-full">
                                         {task.label}

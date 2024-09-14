@@ -5,10 +5,12 @@ import { GiCheckMark, GiCrossMark } from 'react-icons/gi';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import '../tailwind.output.css'
+import { useNavigate } from 'react-router-dom';
 
 export default function Notes() {
     const url = "http://localhost:8000";
     const cookie = Cookies.get("email");
+    const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [notes, setNotes] = useState([]);
     const [newNote, setNewNote] = useState({
@@ -45,6 +47,9 @@ export default function Notes() {
             email: cookie,
             name: newNote.name
         };
+        if (!cookie) {
+            navigate("/login");
+        } else {
         await axios.post(`${url}/addNewNote`, { note })
             .then(res => {
                 setNotes([...notes, ...res.data.notes]);
@@ -54,18 +59,19 @@ export default function Notes() {
             }).catch(e => {
                 toast.error("Oops! Something went wrong...")
             });
+        }
     };
 
     return (
         <div className="flex flex-col justify-center items-center h-80 bg-opacity-50 backdrop-filter backdrop-blur-lg shadow-lg rounded-3xl p-6 max-w-md w-full">
-            <div>
+            <div className='w-full'>
                 <div className="flex justify-between items-center">
                     <h2 className="text-xl font-bold">Notes</h2>
                 </div>
 
                 <div className="h-56 overflow-y-auto scrollbar-thin scrollbar-thumb-rounded space-y-4">
                     {/* Note Item */}
-                    <div className="bg-transparent py-2 shadow-sm">
+                    <div className="bg-transparent py-2">
                         {notes.length > 0 ? (
                             notes.map((note, index) => {
                                 // Convert the ISO date to MM/DD/YYYY
@@ -82,7 +88,7 @@ export default function Notes() {
                                 );
                             })
                         ) : (
-                            <p className="text-sm text-gray-700">No notes found</p>
+                            <p className="text-sm text-gray-700 ">No notes</p>
                         )}
                     </div>
 

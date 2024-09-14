@@ -42,9 +42,14 @@ export default function Calendar() {
                 time: eventTime,
                 description: newEvent
             }).then(res => {
-                setEvents([...events, ...res.data.userEvents.events])
-                fetchEvents();
+                if (Array.isArray(res.data)) {
+                    setEvents([...events, ...res.data])
+                } else {
+                    setEvents([...events, res.data])
+                }
+                console.log(res.data)
                 setNewEvent("");
+                fetchEvents();
                 setSelectedTime(null);
             })
         } catch (error) {
@@ -109,13 +114,13 @@ export default function Calendar() {
                                 placeholderText="Event time"
                             />
                             <button
-                            onClick={addEvent}
-                            className="bg-pink-500 text-white px-4 py-1 rounded"
-                        >
-                            Add
-                        </button>
+                                onClick={addEvent}
+                                className="bg-pink-500 text-white px-4 py-1 rounded"
+                            >
+                                Add
+                            </button>
                         </div>
-                        
+
                     </div>
 
                     {/* Display Events for the Selected Date */}
