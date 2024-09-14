@@ -8,7 +8,8 @@ import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 
 export default function Task() {
-    const url = "https://do-it-zk0s.onrender.com";
+    const url = "http://localhost:8000";
+    const navigate = useNavigate();
     const cookie = Cookies.get("email");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [tasks, setTasks] = useState([]);
