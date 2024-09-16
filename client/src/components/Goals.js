@@ -88,9 +88,10 @@ export default function Goals() {
     return (
         <div className="w-full font-montserrat flex flex-col items-center p-4">
             <h3 className="p-3 text-xl font-bold">Monthly Goals - {month}</h3>
-            <div className="w-full mt-4 lg:flex justify-center">
+            <div className="w-full mt-4 flex justify-center">
                 <input
                     type="text"
+                    required
                     value={newGoal}
                     onChange={handleInputChange}
                     className="lg:w-3/4 border border-gray-300 outline-none bg-transparent px-2 py-1 rounded-md"

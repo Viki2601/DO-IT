@@ -63,7 +63,7 @@ export default function Home() {
                                 <p className='text-lg text-pink-500 font-semibold '>{user ? user.name : 'U'}</p>
                             </div>
                         </div>
-                        <div className='w-full h-screen flex items-center justify-between shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-xl'>
+                        <div className='w-full h-screen flex items-start justify-between shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-xl'>
                             <Goals />
                         </div>
                     </div>

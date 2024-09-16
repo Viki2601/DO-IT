@@ -8,7 +8,7 @@ import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 
 export default function Task() {
-    const url = "http://localhost:8000";
+    const url = "https://do-it-zk0s.onrender.com";
     const navigate = useNavigate();
     const cookie = Cookies.get("email");
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -98,7 +98,7 @@ export default function Task() {
 
 
     return (
-        <div className="flex flex-col justify-center items-center h-80 bg-opacity-50 backdrop-filter backdrop-blur-lg shadow-lg rounded-3xl p-6 max-w-md w-full">
+        <div className="flex flex-col justify-center items-center h-96 lg:h-80 bg-opacity-50 backdrop-filter backdrop-blur-lg shadow-lg rounded-3xl p-6 max-w-md w-full">
             <div className='w-full'>
                 <div className="flex justify-between items-center">
                     <h2 className="text-xl font-bold">Tasks</h2>
