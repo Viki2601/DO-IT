@@ -8,7 +8,7 @@ import '../tailwind.output.css'
 import { useNavigate } from 'react-router-dom';
 
 export default function Notes() {
-    const url = "http://localhost:8000";
+    const url = "https://do-it-zk0s.onrender.com";
     const cookie = Cookies.get("email");
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
